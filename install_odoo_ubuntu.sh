@@ -179,6 +179,9 @@ fi
 echo "Creating custom addons directory..."
 sudo mkdir $OE_HOME/custom
 sudo mkdir $OE_HOME/custom/addons
+cd /usr/src/
+git clone https://github.com/hrmuwanika/odoo_apps.git
+cp -rf odoo_apps/* $OE_HOME/custom/addons
 
 echo "Creating enterprise addons directory..."
 sudo mkdir $OE_HOME/enterprise
