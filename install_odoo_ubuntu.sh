@@ -180,8 +180,8 @@ echo "Creating custom addons directory..."
 sudo mkdir $OE_HOME/custom
 sudo mkdir $OE_HOME/custom/addons
 cd /usr/src/
-git https://github.com/hrmuwanika/CybroAddons.git
-cp -rf CybroAddons/* $OE_HOME/custom/addons
+sudo git clone https://github.com/hrmuwanika/odooapps18.git
+cp -rf odooapps18/* $OE_HOME/custom/addons
 
 echo "Creating enterprise addons directory..."
 sudo mkdir $OE_HOME/enterprise
