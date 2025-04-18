@@ -183,6 +183,10 @@ cd /usr/src/
 git clone https://github.com/hrmuwanika/odoo_apps.git
 cp -rf odoo_apps/* $OE_HOME/custom/addons
 
+cd /usr/src/
+sudo git clone https://github.com/hrmuwanika/odooapps18.git
+cp -rf odooapps18/* $OE_HOME/custom/addons
+
 echo "Creating enterprise addons directory..."
 sudo mkdir $OE_HOME/enterprise
 sudo mkdir $OE_HOME/enterprise/addons
