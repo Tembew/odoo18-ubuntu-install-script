@@ -28,8 +28,6 @@ OE_PORT="8069"
 # Choose the Odoo version which you want to install. For example: 17.0, 16.0, 15.0 or 14.0. When using 'master' the master version will be installed.
 # IMPORTANT! This script contains extra libraries that are specifically needed for Odoo 14.0
 OE_VERSION="18.0"
-# Set this to True if you want to install the Odoo enterprise version!
-IS_ENTERPRISE="False"
 # Installs postgreSQL V16 instead of defaults (e.g V16 for Ubuntu 24.04) - this improves performance
 INSTALL_POSTGRESQL_SIXTEEN="True"
 # Set this to True if you want to install Nginx!
@@ -149,32 +147,6 @@ sudo chown -R $OE_USER:$OE_USER /var/log/$OE_USER
 echo "=== Cloning Odoo 18 from GitHub ... ==="
 sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/odoo $OE_HOME_EXT/
 sudo pip3 install -r /$OE_HOME_EXT/requirements.txt --break-system-packages
-
-if [ $IS_ENTERPRISE = "True" ]; then
-    # Odoo Enterprise install!
-    sudo pip3 install psycopg2-binary pdfminer.six
-    
-    echo "=== Create symlink for node ==="
-    sudo ln -s /usr/bin/nodejs /usr/bin/node
-    
-
-    GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/enterprise "$OE_HOME/enterprise/addons" 2>&1)
-    while [[ $GITHUB_RESPONSE == *"Authentication"* ]]; do
-        echo "============== WARNING ====================="
-        echo "Your authentication with Github has failed! Please try again."
-        printf "In order to clone and install the Odoo enterprise version you \n need to be an offical Odoo partner and you need access to \n http://github.com/odoo/enterprise.\n"
-        echo "TIP: Press ctrl+c to stop this script."
-        echo "============================================="
-        echo " "
-        GITHUB_RESPONSE=$(sudo git clone --depth 1 --branch $OE_VERSION https://www.github.com/odoo/enterprise "$OE_HOME/enterprise/addons" 2>&1)
-    done
-
-    echo -e "=== Added Enterprise code under $OE_HOME/enterprise/addons ==="
-    echo -e "==== Installing Enterprise specific libraries ==="
-    sudo -H pip3 install num2words ofxparse dbfread ebaysdk firebase_admin pyOpenSSL
-    sudo npm install -g less
-    sudo npm install -g less-plugin-clean-css
-fi
 
 # Create custom addons directory
 echo "Creating custom addons directory..."
