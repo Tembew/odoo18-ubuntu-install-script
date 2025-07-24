@@ -29,7 +29,7 @@ OE_PORT="8069"
 # IMPORTANT! This script contains extra libraries that are specifically needed for Odoo 14.0
 OE_VERSION="18.0"
 # Installs postgreSQL V16 instead of defaults (e.g V16 for Ubuntu 24.04) - this improves performance
-INSTALL_POSTGRESQL_SIXTEEN="True"
+INSTALL_POSTGRESQL_SIXTEEN="False"
 # Set this to True if you want to install Nginx!
 INSTALL_NGINX="True"
 # Set the superadmin password - if GENERATE_RANDOM_PASSWORD is set to "True" we will automatically generate a random password, otherwise we use this one
@@ -68,7 +68,7 @@ sudo systemctl restart sshd
 # Setting up the timezones
 #--------------------------------------------------
 # set the correct timezone on ubuntu
-timedatectl set-timezone Africa/Kigali
+timedatectl set-timezone America/Haiti
 timedatectl
 
 #--------------------------------------------------
@@ -121,8 +121,8 @@ sudo npm install -g rtlcss
 #--------------------------------------------------
 if [ $INSTALL_WKHTMLTOPDF = "True" ]; then
   echo "=== Install wkhtmltopdf and place shortcuts on correct place for Odoo 18 ... ==="
-  sudo wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb 
-  sudo dpkg -i wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+  sudo wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_arm64.deb 
+  sudo dpkg -i wkhtmltox_0.12.6.1-2.jammy_arm64.deb
   sudo apt install -f
   sudo cp /usr/local/bin/wkhtmltoimage /usr/bin/wkhtmltoimage
   sudo cp /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
@@ -153,9 +153,9 @@ echo "Creating custom addons directory..."
 sudo mkdir $OE_HOME/custom
 sudo mkdir $OE_HOME/custom/addons
 
-cd /usr/src/
-sudo git clone https://github.com/hrmuwanika/odooapps18.git
-cp -rf odooapps18/* $OE_HOME/custom/addons
+#cd /usr/src/
+#sudo git clone https://github.com/hrmuwanika/odooapps18.git
+#cp -rf odooapps18/* $OE_HOME/custom/addons
 
 echo "Creating enterprise addons directory..."
 sudo mkdir $OE_HOME/enterprise
