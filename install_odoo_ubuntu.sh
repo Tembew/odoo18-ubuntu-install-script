@@ -57,12 +57,12 @@ sudo apt autoremove -y
 #----------------------------------------------------
 # Disabing password authentication
 #----------------------------------------------------
-echo "=== Disabling password authentication ... ==="
-sudo apt -y install openssh-server
-sudo sed -i 's/#ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
-sudo sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config 
-sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sudo systemctl restart sshd
+#echo "=== Disabling password authentication ... ==="
+#sudo apt -y install openssh-server
+#sudo sed -i 's/#ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
+#sudo sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config 
+#sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+#sudo systemctl restart sshd
 
 #--------------------------------------------------
 # Setting up the timezones
@@ -332,22 +332,22 @@ fi
 #--------------------------------------------------
 # UFW Firewall
 #--------------------------------------------------
-echo "=== Installation of UFW firewall ... ==="
-sudo apt install -y ufw 
+#echo "=== Installation of UFW firewall ... ==="
+#sudo apt install -y ufw 
 
-sudo ufw allow 'Nginx Full'
-sudo ufw allow 'Nginx HTTP'
-sudo ufw allow 'Nginx HTTPS'
-sudo ufw allow 22/tcp
-sudo ufw allow 6010/tcp
+#sudo ufw allow 'Nginx Full'
+#sudo ufw allow 'Nginx HTTP'
+#sudo ufw allow 'Nginx HTTPS'
+#sudo ufw allow 22/tcp
+#sudo ufw allow 6010/tcp
 #sudo ufw allow 5432//tcp
-sudo ufw allow 8069/tcp
-sudo ufw allow 8072/tcp
-sudo ufw enable -y
+#sudo ufw allow 8069/tcp
+#sudo ufw allow 8072/tcp
+#sudo ufw enable -y
 
-sudo apt install -y fail2ban
-sudo systemctl start fail2ban
-sudo systemctl enable fail2ban
+#sudo apt install -y fail2ban
+#sudo systemctl start fail2ban
+#sudo systemctl enable fail2ban
 
 clear
 
